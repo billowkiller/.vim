@@ -13,7 +13,17 @@ set background=dark
 let g:solarized_termcolors=256
 colorscheme solarized
 
+
 " set the runtime path to include Vundle and initialize
+set laststatus=2      " 总是显示状态栏
+highlight StatusLine cterm=bold ctermfg=yellow ctermbg=blue
+" 获取当前路径，将$HOME转化为~
+function! CurDir()
+    let curdir = substitute(getcwd(), $HOME, "~", "g")
+    return curdir
+endfunction
+set statusline=[%n]\ %f%m%r%h\ \|\ \pwd:\ %{CurDir()}\ \ 
+
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
